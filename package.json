@@ -1,0 +1,27 @@
+{
+  "name": "task-7-async-dashboard",
+  "version": "1.0.0",
+  "description": "Async Weather & News Dashboard demonstrating callbacks, promises, and async/await",
+  "main": "dist/index.js",
+  "scripts": {
+    "callback": "ts-node src/callbackVersion.ts",
+    "promise": "ts-node src/promiseVersion.ts",
+    "async": "ts-node src/asyncAwaitVersion.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "typescript",
+    "async",
+    "promises",
+    "callbacks",
+    "event-loop"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.0"
+  }
+}
