@@ -13,8 +13,10 @@ export function formatWeather(w: WeatherData): string {
 }
 
 export function formatNews(posts: NewsPost[]): string {
-  const top5 = posts.slice(0, 5);
-  return top5.map((p, i) => `  ${i + 1}. ${p.title}`).join("\n");
+  return posts
+    .slice(0, 5)
+    .map((p, i) => `  ${i + 1}. ${p.title}`)
+    .join("\n");
 }
 
 export function logError(label: string, err: unknown): void {

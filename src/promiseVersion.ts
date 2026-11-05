@@ -30,16 +30,13 @@ function fetchJson<T>(url: string): Promise<T> {
   });
 }
 
-
 const WEATHER_URL =
   "https://api.open-meteo.com/v1/forecast?latitude=-26.2041&longitude=28.0473&current=temperature_2m,wind_speed_10m,weather_code";
 
 const NEWS_URL = "https://dummyjson.com/posts?limit=10";
 
-
 const getWeather = () => fetchJson<WeatherData>(WEATHER_URL);
 const getNews = () => fetchJson<{ posts: NewsPost[] }>(NEWS_URL);
-
 
 function runPromiseChain(): Promise<void> {
   console.log("=== Promise Chain (sequential) ===\n");
@@ -49,7 +46,7 @@ function runPromiseChain(): Promise<void> {
       console.log("Weather fetched:");
       console.log(formatWeather(weather));
       console.log("");
-      return getNews(); 
+      return getNews();
     })
     .then((news) => {
       console.log("News fetched:");
@@ -57,7 +54,7 @@ function runPromiseChain(): Promise<void> {
       console.log("");
     })
     .catch((err) => {
-      logError("Chain", err);
+      logError("Promise (Chain)", err);
     });
 }
 
@@ -65,6 +62,7 @@ function runPromiseAll(): Promise<void> {
   console.log("=== Promise.all (parallel) ===\n");
 
   const start = Date.now();
+
   const weatherP = getWeather();
   const newsP = getNews();
 
@@ -74,12 +72,12 @@ function runPromiseAll(): Promise<void> {
       console.log(`Both responses received in ${elapsed}ms\n`);
       console.log("Weather:");
       console.log(formatWeather(weather));
-      console.log("\n News:");
+      console.log("\nNews:");
       console.log(formatNews(news.posts));
       console.log("");
     })
     .catch((err) => {
-      logError("Promise.all", err);
+      logError("Promise (All)", err);
     });
 }
 
@@ -104,7 +102,7 @@ function runPromiseRace(): Promise<void> {
       console.log("");
     })
     .catch((err) => {
-      logError("Promise.race", err);
+      logError("Promise (Race)", err);
     });
 }
 
